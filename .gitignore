@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.pnpm-store/
+.yarn/cache/
+
+# Environment Variables & Private Secrets
+.env
+.env.local
+.env.*.local
+*.local
+functions/.env
+backend/functions/.env
+
+# Production Build Outputs
+dist/
+**/dist/
+build/
+**/build/
+lib/
+**/lib/
+*.tsbuildinfo
+
+# Logs & Diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+
+# IDE & OS Metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.agent/
+.agents/
+.gemini/

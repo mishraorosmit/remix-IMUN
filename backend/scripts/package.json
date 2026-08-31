@@ -1,0 +1,19 @@
+{
+  "name": "illuminati-mun-scripts",
+  "version": "1.0.0",
+  "description": "Admin and database seeding scripts for Illuminati MUN backend",
+  "main": "seedDatabase.ts",
+  "scripts": {
+    "seed": "tsx seedDatabase.ts",
+    "set-admin": "tsx setAdminRole.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "firebase-admin": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

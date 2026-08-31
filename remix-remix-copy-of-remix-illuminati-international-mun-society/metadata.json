@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Copy of Remix Illuminati International MUN Society",
+  "description": "A student-driven global platform dedicated to advancing Model United Nations, diplomacy, leadership, public speaking, and international awareness among young people.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

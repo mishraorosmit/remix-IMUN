@@ -1,0 +1,11 @@
+{
+  "name": "illuminati-international-mun-society",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix remix-remix-copy-of-remix-illuminati-international-mun-society run dev",
+    "build": "npm --prefix remix-remix-copy-of-remix-illuminati-international-mun-society run build",
+    "preview": "npm --prefix remix-remix-copy-of-remix-illuminati-international-mun-society run preview",
+    "lint": "npm --prefix remix-remix-copy-of-remix-illuminati-international-mun-society run lint"
+  }
+}

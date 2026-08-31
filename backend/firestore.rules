@@ -1,0 +1,111 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // -------------------------------------------------------------
+    // Helper Functions & Role-Based Access Control
+    // -------------------------------------------------------------
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    function isExecutiveBoard() {
+      return isAuthenticated() && (request.auth.token.role == 'admin' || request.auth.token.role == 'eb');
+    }
+
+    // -------------------------------------------------------------
+    // 1. Delegate Registrations
+    // -------------------------------------------------------------
+    match /delegate_registrations/{regId} {
+      // Any prospective delegate can submit their registration dossier
+      allow create: if request.resource.data.fullName is string
+                    && request.resource.data.fullName.size() > 0
+                    && request.resource.data.email is string
+                    && request.resource.data.email.matches('^.+@.+$')
+                    && request.resource.data.preferredCommittee is string
+                    && request.resource.data.status in ['submitted', 'under_review'];
+      
+      // Public / Anonymous lookup by clearance code or document ID
+      allow get: if true; 
+      
+      // Executive Board and Secretariat can list, update status, and manage allotments
+      allow list, update, delete: if isExecutiveBoard();
+    }
+
+    // -------------------------------------------------------------
+    // 2. Session Bookings (1-on-1 & Institutional Masterclasses)
+    // -------------------------------------------------------------
+    match /session_bookings/{bookingId} {
+      allow create: if request.resource.data.fullName is string
+                    && request.resource.data.email is string
+                    && request.resource.data.preferredDate is string
+                    && request.resource.data.status in ['pending'];
+      
+      allow get: if true;
+      allow list, update, delete: if isAdmin();
+    }
+
+    // -------------------------------------------------------------
+    // 3. Contact Inquiries & Diplomatic Cables
+    // -------------------------------------------------------------
+    match /contact_inquiries/{inquiryId} {
+      allow create: if request.resource.data.senderName is string
+                    && request.resource.data.senderEmail is string
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0;
+      
+      allow read, update, delete: if isAdmin();
+    }
+
+    // -------------------------------------------------------------
+    // 4. Live Marquee Dispatches & News Feed
+    // -------------------------------------------------------------
+    match /marquee_dispatches/{dispatchId} {
+      allow read: if true;
+      allow write: if isExecutiveBoard();
+    }
+
+    // -------------------------------------------------------------
+    // 5. Working Papers & Draft Resolutions
+    // -------------------------------------------------------------
+    match /draft_resolutions/{resolutionId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if isExecutiveBoard() || (isAuthenticated() && resource.data.createdBy == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    // -------------------------------------------------------------
+    // 6. Conference Dossiers & Committees Metadata
+    // -------------------------------------------------------------
+    match /conferences/{confId} {
+      allow read: if true;
+      allow write: if isAdmin();
+      
+      match /committees/{committeeId} {
+        allow read: if true;
+        allow write: if isExecutiveBoard();
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 7. Archival Gallery Media Records
+    // -------------------------------------------------------------
+    match /gallery_media/{mediaId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // -------------------------------------------------------------
+    // 8. User Profiles & RBAC
+    // -------------------------------------------------------------
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if isAdmin();
+    }
+  }
+}

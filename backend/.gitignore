@@ -1,0 +1,19 @@
+# Node Dependencies
+node_modules/
+functions/node_modules/
+scripts/node_modules/
+
+# Compilation Artifacts
+functions/lib/
+*.tsbuildinfo
+
+# Private Environment Configs
+.env
+functions/.env
+*.local
+
+# Firebase Logs
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log

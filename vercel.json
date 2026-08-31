@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "buildCommand": "cd remix-remix-copy-of-remix-illuminati-international-mun-society && npm install && npm run build",
+  "outputDirectory": "remix-remix-copy-of-remix-illuminati-international-mun-society/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

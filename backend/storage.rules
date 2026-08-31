@@ -1,0 +1,26 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Position Papers and Delegate Uploads (PDF / DOCX max 10MB)
+    match /delegates/{regId}/{fileName} {
+      allow write: if request.resource.size < 10 * 1024 * 1024
+                   && (request.resource.contentType.matches('application/pdf')
+                       || request.resource.contentType.matches('application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                       || request.resource.contentType.matches('image/.*'));
+      allow read: if request.auth != null;
+    }
+
+    // Archival Media and Gallery Photos (Public read, admin write)
+    match /gallery/{allImages=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.role == 'admin';
+    }
+
+    // Public Background Guides and Committee Dossiers
+    match /study_guides/{allDocs=**} {
+      allow read: if true;
+      allow write: if request.auth != null && (request.auth.token.role == 'admin' || request.auth.token.role == 'eb');
+    }
+  }
+}

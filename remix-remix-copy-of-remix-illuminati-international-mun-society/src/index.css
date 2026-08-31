@@ -1,0 +1,709 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Broadsheet Design Tokens - Updated with Bone-Cream #F8F4E6 and Charcoal Slate #1E3A8A */
+    --color-parchment: #F8F4E6;
+    --color-bone-cream: #F8F4E6;
+    --color-ink-black: #0B192C;
+    --color-charcoal: #1E3A8A;
+    --color-pure-black: #000000;
+    --color-ember-orange: #C5A059;
+
+    /* Semantic Aliases */
+    --paper: #F8F4E6;
+    --paper-secondary: #F8F4E6;
+    --paper-highlight: #E6D5B8;
+    --paper-tertiary: #c0b8af;
+    --paper-slate: #1E3A8A;
+    --ink: #0B192C;
+    --ink-muted: #1E3A8A;
+    --crimson: #C5A059;
+    --hairline: rgba(11, 25, 44, 0.2);
+
+    /* Radii Tokens */
+    --radius-tags: 2.88px;
+    --radius-cards: 11.52px;
+    --radius-images: 0px;
+    --radius-buttons: 2.88px;
+  }
+
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    background-color: var(--color-bone-cream);
+    color: var(--color-ink-black);
+    font-family: 'EB Garamond', 'Newsreader', 'Source Serif 4', Georgia, serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Broadsheet Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F8F4E6;
+    border-left: 1px solid #0B192C;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E3A8A;
+    border: 1px solid #0B192C;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D97706;
+  }
+}
+
+/* Specific Modern & Classical Typography Utility Classes */
+.font-ubuntu {
+  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-eb-garamond,
+.font-garamond {
+  font-family: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.font-unbounded {
+  font-family: 'Unbounded', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Miranda Broadsheet & Editorial New Typography Classes */
+.font-editorial, 
+.font-editorial-new {
+  font-family: 'EB Garamond', 'Newsreader', 'PP Editorial New', 'Editorial New', 'Cormorant Garamond', 'Source Serif 4', 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.font-editorial-italic {
+  font-family: 'EB Garamond', 'Newsreader', 'PP Editorial New', 'Editorial New', 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 450;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-editorial-heading {
+  font-family: 'Newsreader', 'EB Garamond', 'DM Serif Display', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-instrument {
+  font-family: 'Instrument Serif', 'EB Garamond', 'Newsreader', Georgia, serif;
+  font-style: italic;
+  letter-spacing: normal;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', 'EB Garamond', 'Newsreader', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.font-canopee, .font-display {
+  font-family: 'Big Shoulders Display', 'Bodoni Moda', 'Oswald', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-domaine {
+  font-family: 'DM Serif Display', 'EB Garamond', 'Newsreader', 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: normal;
+}
+
+.font-germgoth {
+  font-family: 'Pirata One', 'IM Fell English', Georgia, serif;
+  font-weight: 400;
+}
+
+.font-dossier, .font-mono-tag {
+  font-family: 'Roboto Mono', 'Courier Prime', monospace;
+  font-weight: 600;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editorial Lead & Pull Quote */
+.editorial-lead {
+  font-family: 'EB Garamond', 'Newsreader', 'Source Serif 4', serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: normal;
+  color: #0B192C;
+  font-weight: 450;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.editorial-pullquote {
+  font-family: 'EB Garamond', 'Newsreader', 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 1.65rem;
+  line-height: 1.35;
+  color: #0B192C;
+  position: relative;
+  padding: 1.5rem 2rem;
+  border-left: 3px solid #D97706;
+  background: rgba(226, 222, 219, 0.4);
+}
+
+.editorial-pullquote::before {
+  content: '“';
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  color: #D97706;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Broadsheet Drop Cap */
+.drop-cap::first-letter {
+  font-family: 'Big Shoulders Display', 'Bodoni Moda', 'Newsreader', sans-serif;
+  font-weight: 900;
+  font-size: 5.2rem;
+  line-height: 0.72;
+  float: left;
+  margin-right: 0.75rem;
+  margin-top: 0.2rem;
+  color: #0B192C;
+  text-transform: uppercase;
+}
+
+/* Miranda Component Styles */
+
+/* 1. Full-Width Display Banner Block */
+.display-banner-block {
+  background-color: #0B192C;
+  color: #E6D5B8;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  border-top: 1px solid #0B192C;
+  border-bottom: 1px solid #0B192C;
+}
+
+.display-banner-text {
+  font-family: 'Big Shoulders Display', 'Bodoni Moda', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #E6D5B8;
+  line-height: 0.72;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+
+/* 2. Broadsheet Project Grid Card */
+.broadsheet-card {
+  background-color: #F8F4E6;
+  color: #0B192C;
+  border-radius: 11.52px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 25, 44, 0.15);
+  box-shadow: rgba(11, 25, 44, 0.15) -4px 4px 6px 0px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.broadsheet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(11, 25, 44, 0.25) -5px 6px 10px 0px;
+}
+
+/* 3. NEW Badge & Status Pills with Harmonious Color Tokens */
+.badge-new {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #0B192C;
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  font-family: 'Unbounded', 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2.5px 7px;
+  border-radius: 3px;
+  line-height: 1.1;
+  box-shadow: 0 1px 2px rgba(11, 25, 44, 0.25);
+  white-space: nowrap;
+  text-shadow: none;
+}
+
+.badge-gold, .badge-amber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #D97706;
+  color: #0B192C;
+  border: 1px solid #0B192C;
+  font-family: 'Unbounded', 'Ubuntu', sans-serif;
+  font-weight: 800;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2.5px 7px;
+  border-radius: 3px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.badge-tag-clean {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0B192C;
+  color: #F8F4E6;
+  border: 1px solid rgba(248, 244, 230, 0.2);
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+/* 4. Stamp Seal Illustration Accent */
+.stamp-seal-miranda {
+  border-radius: 11.52px;
+  background-color: #E6D5B8;
+  border: 1px dashed #0B192C;
+  padding: 12px 16px;
+  box-shadow: rgba(11, 25, 44, 0.12) -3px 3px 5px 0px;
+}
+
+/* 5. Editorial Text Link with Underline */
+.editorial-link {
+  font-family: 'EB Garamond', 'Newsreader', 'Source Serif 4', serif;
+  font-weight: 400;
+  color: #0B192C;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+.editorial-link:hover {
+  color: #D97706;
+  text-decoration-thickness: 2px;
+}
+
+/* 6. Broadsheet Buttons */
+.btn-broadsheet-primary {
+  background-color: #0B192C;
+  color: #F8F4E6;
+  border-radius: 4px;
+  border: 1px solid #0B192C;
+  padding: 10px 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  box-shadow: rgba(11, 25, 44, 0.2) 0px 2px 4px;
+}
+.btn-broadsheet-primary:hover {
+  background-color: #1E3A8A;
+  color: #ffffff;
+  box-shadow: rgba(11, 25, 44, 0.3) 0px 4px 8px;
+}
+
+.btn-broadsheet-secondary {
+  background-color: #F8F4E6;
+  color: #0B192C;
+  border-radius: 4px;
+  border: 1px solid #0B192C;
+  padding: 10px 20px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.btn-broadsheet-secondary:hover {
+  background-color: #E6D5B8;
+  color: #0B192C;
+}
+
+.btn-broadsheet-accent {
+  background-color: #D97706;
+  color: #0B192C;
+  border-radius: 4px;
+  border: 1px solid #0B192C;
+  padding: 10px 20px;
+  font-family: 'Unbounded', 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  box-shadow: rgba(217, 119, 6, 0.25) 0px 2px 6px;
+}
+.btn-broadsheet-accent:hover {
+  background-color: #F59E0B;
+  box-shadow: rgba(217, 119, 6, 0.4) 0px 4px 10px;
+}
+
+/* Hairline Broadsheet Dividers */
+.broadsheet-divider {
+  height: 1px;
+  background-color: #0B192C;
+  width: 100%;
+}
+
+.broadsheet-divider-subtle {
+  height: 1px;
+  background-color: rgba(11, 25, 44, 0.2);
+  width: 100%;
+}
+
+/* Retaining legacy compatibility classes mapped to Miranda tokens */
+.hard-stamp {
+  border: 1px solid #0B192C;
+  box-shadow: rgba(11, 25, 44, 0.2) -4px 4px 6px 0px;
+  transition: all 0.15s ease;
+}
+
+.comic-panel, .brutal-card {
+  background-color: #F8F4E6;
+  border: 1px solid #0B192C;
+  box-shadow: rgba(11, 25, 44, 0.15) -4px 4px 6px 0px;
+}
+
+.btn-case-stamp {
+  background-color: #0B192C;
+  color: #E6D5B8;
+  border: 1px solid #0B192C;
+  border-radius: 2.88px;
+  font-family: 'Newsreader', 'Source Serif 4', serif;
+  transition: all 0.15s ease;
+}
+.btn-case-stamp:hover {
+  background-color: #C5A059;
+  color: #ffffff;
+  border-color: #C5A059;
+}
+
+.btn-case-secondary {
+  background-color: #F8F4E6;
+  color: #0B192C;
+  border: 1px solid #0B192C;
+  border-radius: 2.88px;
+  font-family: 'Newsreader', 'Source Serif 4', serif;
+  transition: all 0.15s ease;
+}
+.btn-case-secondary:hover {
+  background-color: #E6D5B8;
+}
+
+/* ========================================================================= */
+/* Authentic Newspaper Broadsheet Utilities & Textures                      */
+/* ========================================================================= */
+
+/* Newspaper Linotype & Column Dividing Rules */
+.linotype-rule-v {
+  position: relative;
+}
+.linotype-rule-v::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: #0B192C;
+  opacity: 0.25;
+}
+
+.linotype-rule-h {
+  border-top: 1px solid #0B192C;
+  border-bottom: 2px solid #0B192C;
+  height: 4px;
+  margin: 8px 0;
+}
+
+.newspaper-double-border {
+  border-top: 3px double #0B192C;
+  border-bottom: 3px double #0B192C;
+}
+
+.newspaper-header-rule {
+  border-top: 2px solid #0B192C;
+  border-bottom: 1px solid #0B192C;
+  padding: 4px 0;
+}
+
+/* Halftone Newspaper Print Dot Simulation */
+.halftone-photo {
+  position: relative;
+}
+.halftone-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #0B192C 0.75px, transparent 0.75px);
+  background-size: 3px 3px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Dog-eared paper corner */
+.dog-ear-corner {
+  position: relative;
+}
+.dog-ear-corner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #F8F4E6 #E6D5B8 #F8F4E6 #F8F4E6;
+  box-shadow: -1px 1px 2px rgba(29,29,27,0.2);
+  z-index: 10;
+}
+
+/* Newspaper Justified Column Style */
+.newspaper-body-text {
+  font-family: 'Newsreader', 'Source Serif 4', 'Editorial New', Georgia, serif;
+  font-size: 14.5px;
+  line-height: 1.48;
+  color: #0B192C;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Vintage Classified Box */
+.classified-box {
+  background-color: #F8F4E6;
+  border: 1px solid #0B192C;
+  border-radius: 2.88px;
+  padding: 12px;
+  position: relative;
+}
+
+/* Paper Rustle / Flip Perspective */
+.newspaper-perspective {
+  perspective: 1200px;
+}
+.newspaper-page-leaf {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.41 0 0 0 0 0.39 0 0 0 0 0.37 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+.canvas-paper-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperFibers'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23cdc6be' surfaceScale='2' result='light'%3E%3CfeDistantLight azimuth='65' elevation='55'/%3E%3C/feDiffuseLighting%3E%3CfeBlend mode='multiply' in='SourceGraphic' in2='light'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23cdc6be' filter='url(%23paperFibers)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  pointer-events: none;
+}
+
+/* Authentic Paper Pulp Speckles & Fibers */
+.paper-pulp-fibers {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fibers'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' result='noise'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.41 0 0 0 0 0.39 0 0 0 0 0.37 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fibers)'/%3E%3C/svg%3E");
+  background-size: 150px 150px;
+  pointer-events: none;
+}
+
+/* Subtle Paper Vignette Gradients with Charcoal Slate #1E3A8A */
+.paper-vignette {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(205, 198, 190, 0) 60%,
+    rgba(30, 58, 138, 0.12) 100%
+  );
+  pointer-events: none;
+}
+
+/* Broadsheet Pressed Laid Lines */
+.paper-laid-matrix {
+  background-image: 
+    repeating-linear-gradient(0deg, rgba(30, 58, 138, 0.035) 0px, rgba(30, 58, 138, 0.035) 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(90deg, rgba(30, 58, 138, 0.02) 0px, rgba(30, 58, 138, 0.02) 1px, transparent 1px, transparent 32px);
+  pointer-events: none;
+}
+
+/* ========================================================================= */
+/* Editorial Animation Keyframes & Micro-Interactions                        */
+/* ========================================================================= */
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes sealRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shineSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes ribbonSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+.animate-seal-slow {
+  animation: sealRotate 24s linear infinite;
+}
+
+.animate-seal-slow:hover {
+  animation-play-state: paused;
+}
+
+/* Interactive Card & Link Enhancements */
+.paper-card-interactive {
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.12s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.1s ease;
+  will-change: transform;
+}
+
+.paper-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(11, 25, 44, 0.22) -4px 5px 8px 0px;
+}
+
+.magnetic-press {
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.1s ease;
+}
+
+.magnetic-press:active {
+  transform: scale(0.98) translateY(1px);
+}
+
+.editorial-glow {
+  text-shadow: none;
+}
+
+/* Tabular nums helper */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fast hardware-accelerated smooth rendering utilities */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+
