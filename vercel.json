@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "cd remix-remix-copy-of-remix-illuminati-international-mun-society && npm install && npm run build",
+  "framework": "vite",
+  "buildCommand": "npm --prefix remix-remix-copy-of-remix-illuminati-international-mun-society run build",
   "outputDirectory": "remix-remix-copy-of-remix-illuminati-international-mun-society/dist",
   "rewrites": [
     {

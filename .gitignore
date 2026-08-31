@@ -45,3 +45,4 @@ Thumbs.db
 .agent/
 .agents/
 .gemini/
+.vercel
